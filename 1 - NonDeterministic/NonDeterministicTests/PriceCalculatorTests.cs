@@ -9,7 +9,7 @@ namespace NonDeterministicTests
         [TestMethod]
         public void CalculateFinalPriceBefore10AM_BasePriceTenDollars_FinalPriceEightDollars()
         {
-            var myPriceCalculator = new PriceCalculator();
+            var myPriceCalculator = new Program.PriceCalculator();
 
             decimal result = myPriceCalculator.CalculateFinalPrice(10);
 
@@ -19,7 +19,7 @@ namespace NonDeterministicTests
         [TestMethod]
         public void CalculateFinalPriceAfter10AMAndBefore12Noon_BasePriceTenDollars_FinalPriceNineDollars()
         {
-            var myPriceCalculator = new PriceCalculator();
+            var myPriceCalculator = new Program.PriceCalculator();
 
             decimal result = myPriceCalculator.CalculateFinalPrice(10);
 

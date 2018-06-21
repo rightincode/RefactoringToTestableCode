@@ -8,7 +8,7 @@ public class PriceCalculatorTests
     [TestMethod]
     public void CalculateFinalPriceBefore10AM_BasePriceTenDollars_FinalPriceEightDollars()
     {
-        var myPriceCalculator = new PriceCalculator();
+        var myPriceCalculator = new Program.PriceCalculator();
 
         decimal result = myPriceCalculator.CalculateFinalPrice(10, new DateTime(2018, 06, 21, 09, 30, 00));
 
@@ -18,7 +18,7 @@ public class PriceCalculatorTests
     [TestMethod]
     public void CalculateFinalPriceAfter10AMAndBefore12Noon_BasePriceTenDollars_FinalPriceNineDollars()
     {
-        var myPriceCalculator = new PriceCalculator();
+        var myPriceCalculator = new Program.PriceCalculator();
 
         decimal result = myPriceCalculator.CalculateFinalPrice(10, new DateTime(2018, 06, 21, 11, 30, 00));
 
@@ -28,7 +28,7 @@ public class PriceCalculatorTests
     [TestMethod]
     public void CalculateFinalPriceAfter3PM_BasePriceTenDollars_FinalPriceTenDollars()
     {
-        var myPriceCalculator = new PriceCalculator();
+        var myPriceCalculator = new Program.PriceCalculator();
 
         decimal result = myPriceCalculator.CalculateFinalPrice(10, new DateTime(2018, 06, 21, 15, 30, 00));
 

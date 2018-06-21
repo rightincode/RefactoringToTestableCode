@@ -17,70 +17,72 @@ namespace TightCoupling
                     " and the final price is " + priceResult.FinalPrice.ToString("c"));
                 lineNumber++;
             }
-        }        
-    }
+        }
 
-    public struct PricingRecord
-    {
-        public decimal BasePrice;
-        public decimal FinalPrice;
-    }
-
-    public class CashRegister
-    {
-        readonly PriceDataRepository _priceDataRepo;
-        readonly PriceCalculator _priceCalculator = new PriceCalculator();
-        public readonly List<PricingRecord> PriceResults = new List<PricingRecord>();
-
-        public CashRegister()
+        public struct PricingRecord
         {
-            _priceDataRepo = new PriceDataRepository();
-            _priceDataRepo.CalulateFinalPrices();
+            public decimal BasePrice;
+            public decimal FinalPrice;
+        }
 
-            foreach (var price in _priceDataRepo.PriceData)
+        public class CashRegister
+        {
+            readonly PriceDataRepository _priceDataRepo;
+            readonly PriceCalculator _priceCalculator = new PriceCalculator();
+            public readonly List<PricingRecord> PriceResults = new List<PricingRecord>();
+
+            public CashRegister()
             {
-                var pricingRecord = new PricingRecord
+                _priceDataRepo = new PriceDataRepository();
+                _priceDataRepo.CalulateFinalPrices();
+
+                foreach (var price in _priceDataRepo.PriceData)
                 {
-                    BasePrice = price,
-                    FinalPrice = _priceCalculator.CalculateFinalPrice(price, DateTime.Now)
-                };
+                    var pricingRecord = new PricingRecord
+                    {
+                        BasePrice = price,
+                        FinalPrice = _priceCalculator.CalculateFinalPrice(price, DateTime.Now)
+                    };
 
-                PriceResults.Add(pricingRecord);
+                    PriceResults.Add(pricingRecord);
+                }
             }
         }
-    }
 
-    public class PriceDataRepository
-    {
-        public List<decimal> PriceData { get; private set; }
-        public PriceDataRepository()
+        public class PriceDataRepository
         {
-            PriceData = new List<decimal>();            
-        }
-        public void CalulateFinalPrices()
-        {
-            var randGenerator = new Random();
-
-            for (int counter = 1; counter <= 10; counter++)
+            public List<decimal> PriceData { get; private set; }
+            public PriceDataRepository()
             {
-                decimal newPrice = (decimal)(randGenerator.NextDouble() * 249 + 1);
-                PriceData.Add(newPrice);
+                PriceData = new List<decimal>();
+            }
+            public void CalulateFinalPrices()
+            {
+                var randGenerator = new Random();
+
+                for (int counter = 1; counter <= 10; counter++)
+                {
+                    decimal newPrice = (decimal)(randGenerator.NextDouble() * 249 + 1);
+                    PriceData.Add(newPrice);
+                }
+            }
+        }
+
+        public class PriceCalculator
+        {
+            public decimal CalculateFinalPrice(decimal basePrice, DateTime currentTime)
+            {
+                decimal finalPrice = 0;
+
+                finalPrice = currentTime.Hour < 10
+                    ? basePrice - (basePrice * decimal.Parse(".2"))
+                    : (currentTime.Hour >= 10) && (currentTime.Hour < 12) ? basePrice - (basePrice * decimal.Parse(".1"))
+                    : basePrice;
+
+                return finalPrice;
             }
         }
     }
 
-    public class PriceCalculator
-    {
-        public decimal CalculateFinalPrice(decimal basePrice, DateTime currentTime)
-        {
-            decimal finalPrice = 0;
-
-            finalPrice = currentTime.Hour < 10
-                ? basePrice - (basePrice * decimal.Parse(".2"))
-                : (currentTime.Hour >= 10) && (currentTime.Hour < 12) ? basePrice - (basePrice * decimal.Parse(".1"))
-                : basePrice;
-
-            return finalPrice;
-        }
-    }
+    
 }

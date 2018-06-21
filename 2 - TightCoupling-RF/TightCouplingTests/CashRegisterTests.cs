@@ -15,10 +15,10 @@ namespace TightCouplingTests
         {
             MockPriceDataRepository myPriceRepo = new MockPriceDataRepository();
 
-            CashRegister cashRegister = new CashRegister(myPriceRepo, new DateTime(2018, 06, 21, 09, 00, 00)); //also processing
+            Program.CashRegister cashRegister = new Program.CashRegister(myPriceRepo, new DateTime(2018, 06, 21, 09, 00, 00)); //also processing
             
             decimal currentValue = 1;
-            foreach (PricingRecord pricingRecord in cashRegister.PriceResults)
+            foreach (Program.PricingRecord pricingRecord in cashRegister.PriceResults)
             {
                 Assert.AreEqual(currentValue, pricingRecord.BasePrice);
                 Assert.AreEqual((currentValue - (currentValue * decimal.Parse(".2"))), pricingRecord.FinalPrice);
@@ -31,10 +31,10 @@ namespace TightCouplingTests
         {
             MockPriceDataRepository myPriceRepo = new MockPriceDataRepository();
 
-            CashRegister cashRegister = new CashRegister(myPriceRepo, new DateTime(2018, 06, 21, 11, 00, 00)); //also processing
+            Program.CashRegister cashRegister = new Program.CashRegister(myPriceRepo, new DateTime(2018, 06, 21, 11, 00, 00)); //also processing
 
             decimal currentValue = 1;
-            foreach (PricingRecord pricingRecord in cashRegister.PriceResults)
+            foreach (Program.PricingRecord pricingRecord in cashRegister.PriceResults)
             {
                 Assert.AreEqual(currentValue, pricingRecord.BasePrice);
                 Assert.AreEqual((currentValue - (currentValue * decimal.Parse(".1"))), pricingRecord.FinalPrice);
@@ -47,9 +47,9 @@ namespace TightCouplingTests
         {
             MockPriceDataRepository myPriceRepo = new MockPriceDataRepository();
 
-            CashRegister cashRegister = new CashRegister(myPriceRepo, new DateTime(2018, 06, 21, 12, 30, 00)); //also processing
+            Program.CashRegister cashRegister = new Program.CashRegister(myPriceRepo, new DateTime(2018, 06, 21, 12, 30, 00)); //also processing
 
-            foreach (PricingRecord pricingRecord in cashRegister.PriceResults)
+            foreach (Program.PricingRecord pricingRecord in cashRegister.PriceResults)
             {
                 Assert.AreEqual(pricingRecord.BasePrice, pricingRecord.FinalPrice);
             }

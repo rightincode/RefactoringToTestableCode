@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace NonDeterministic
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -12,36 +12,38 @@ namespace NonDeterministic
             Debug.WriteLine("The base price is $10 and the final price is $" 
                 + myPriceCalculator.CalculateFinalPrice(10).ToString());
         }
-    }
 
-    public class PriceCalculator
-    {
-        public decimal CalculateFinalPrice(decimal basePrice)
+        public class PriceCalculator
         {
-            decimal finalPrice = 0;
-
-            var currentTime = DateTime.Now;
-
-            if (currentTime.Hour < 10)
+            public decimal CalculateFinalPrice(decimal basePrice)
             {
-                finalPrice = basePrice - (basePrice * decimal.Parse(".2"));
-            }
-            else if ((currentTime.Hour >= 10) && (currentTime.Hour < 12))
-            {
-                finalPrice = basePrice - (basePrice * decimal.Parse(".1"));
-            }
-            else
-            {
-                finalPrice = basePrice;
-            }
+                decimal finalPrice = 0;
 
-            //Same logic as above but using a conditional operator
-            //finalPrice = currentTime.Hour < 10
-            //    ? basePrice - (basePrice * decimal.Parse(".2"))
-            //    : (currentTime.Hour >= 10) && (currentTime.Hour < 12) ? basePrice - (basePrice * decimal.Parse(".1")) 
-            //    : basePrice;
+                var currentTime = DateTime.Now;
 
-            return finalPrice;
+                if (currentTime.Hour < 10)
+                {
+                    finalPrice = basePrice - (basePrice * decimal.Parse(".2"));
+                }
+                else if ((currentTime.Hour >= 10) && (currentTime.Hour < 12))
+                {
+                    finalPrice = basePrice - (basePrice * decimal.Parse(".1"));
+                }
+                else
+                {
+                    finalPrice = basePrice;
+                }
+
+                //Same logic as above but using a conditional operator
+                //finalPrice = currentTime.Hour < 10
+                //    ? basePrice - (basePrice * decimal.Parse(".2"))
+                //    : (currentTime.Hour >= 10) && (currentTime.Hour < 12) ? basePrice - (basePrice * decimal.Parse(".1")) 
+                //    : basePrice;
+
+                return finalPrice;
+            }
         }
     }
+
+    
 }
