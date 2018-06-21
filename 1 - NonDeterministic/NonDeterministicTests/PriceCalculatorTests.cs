@@ -7,6 +7,16 @@ namespace NonDeterministicTests
     public class PriceCalculatorTests
     {
         [TestMethod]
+        public void CalculateFinalPriceBefore10AM_BasePriceTenDollars_FinalPriceEightDollars()
+        {
+            var myPriceCalculator = new PriceCalculator();
+
+            decimal result = myPriceCalculator.CalculateFinalPrice(10);
+
+            Assert.AreEqual(decimal.Parse("8"), result);
+        }
+
+        [TestMethod]
         public void CalculateFinalPriceAfter10AMAndBefore12Noon_BasePriceTenDollars_FinalPriceNineDollars()
         {
             var myPriceCalculator = new PriceCalculator();
