@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using TightCoupling.Interfaces;
 
 namespace TightCoupling
 {
@@ -8,7 +9,7 @@ namespace TightCoupling
     {
         static void Main(string[] args)
         {
-            var myCashRegister = new CashRegister();
+            var myCashRegister = new CashRegister(new PriceDataRepository(), DateTime.Now);
 
             int lineNumber = 1;
             foreach(var priceResult in myCashRegister.PriceResults)
@@ -28,13 +29,13 @@ namespace TightCoupling
 
     public class CashRegister
     {
-        readonly PriceDataRepository _priceDataRepo;
+        readonly IPriceDataRepository _priceDataRepo;
         readonly PriceCalculator _priceCalculator = new PriceCalculator();
         public readonly List<PricingRecord> PriceResults = new List<PricingRecord>();
 
-        public CashRegister()
+        public CashRegister(IPriceDataRepository priceDataRepository, DateTime currentTime)
         {
-            _priceDataRepo = new PriceDataRepository();
+            _priceDataRepo = priceDataRepository;
             _priceDataRepo.CalulateFinalPrices();
 
             foreach (var price in _priceDataRepo.PriceData)
@@ -42,7 +43,7 @@ namespace TightCoupling
                 var pricingRecord = new PricingRecord
                 {
                     BasePrice = price,
-                    FinalPrice = _priceCalculator.CalculateFinalPrice(price, DateTime.Now)
+                    FinalPrice = _priceCalculator.CalculateFinalPrice(price, currentTime)
                 };
 
                 PriceResults.Add(pricingRecord);
@@ -50,12 +51,12 @@ namespace TightCoupling
         }
     }
 
-    public class PriceDataRepository
+    public class PriceDataRepository : IPriceDataRepository
     {
         public List<decimal> PriceData { get; private set; }
         public PriceDataRepository()
         {
-            PriceData = new List<decimal>();            
+            PriceData = new List<decimal>();          
         }
         public void CalulateFinalPrices()
         {
