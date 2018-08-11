@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IsolateDomainModels\IsolateDomainModels.csproj" />
+    <ProjectReference Include="..\IsolateDomainModels.Core\IsolateDomainModels.Core.csproj" />
   </ItemGroup>
 
 </Project>

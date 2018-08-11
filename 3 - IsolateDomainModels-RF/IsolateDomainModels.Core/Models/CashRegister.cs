@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using IsolateDomainModels.Interfaces;
+using IsolateDomainModels.Core.Interfaces;
 
-namespace IsolateDomainModels.Models
+namespace IsolateDomainModels.Core.Models
 {
     public struct PricingRecord
     {

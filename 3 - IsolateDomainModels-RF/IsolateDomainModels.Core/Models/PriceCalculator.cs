@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IsolateDomainModels.Models
+namespace IsolateDomainModels.Core.Models
 {
     public class PriceCalculator
     {

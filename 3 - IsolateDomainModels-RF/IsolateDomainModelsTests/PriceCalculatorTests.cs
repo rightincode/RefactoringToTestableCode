@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using IsolateDomainModels.Models;
+using IsolateDomainModels.Core.Models;
 
 [TestClass]
 public class PriceCalculatorTests

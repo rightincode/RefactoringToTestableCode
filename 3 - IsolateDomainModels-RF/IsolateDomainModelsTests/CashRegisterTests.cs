@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using IsolateDomainModelsTests.Models;
-using IsolateDomainModels.Models;
+using IsolateDomainModels.Core.Models;
 
 namespace TightCouplingTests
 {

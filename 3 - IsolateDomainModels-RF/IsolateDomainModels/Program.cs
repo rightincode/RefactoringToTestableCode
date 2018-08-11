@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using IsolateDomainModels.Models;
+using IsolateDomainModels.Core.Models;
 
 namespace IsolateDomainModels
 {
