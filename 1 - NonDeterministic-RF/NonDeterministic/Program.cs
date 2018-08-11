@@ -32,11 +32,15 @@ namespace NonDeterministic
                     finalPrice = basePrice;
                 }
 
+                #region "Hidden Code"
+
                 //Same logic as above but using a conditional operator
                 //finalPrice = currentTime.Hour < 10
                 //    ? basePrice - (basePrice * decimal.Parse(".2"))
                 //    : (currentTime.Hour >= 10) && (currentTime.Hour < 12) ? basePrice - (basePrice * decimal.Parse(".1")) 
                 //    : basePrice;
+
+                #endregion
 
                 return finalPrice;
             }

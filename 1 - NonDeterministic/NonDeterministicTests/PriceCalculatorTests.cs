@@ -25,5 +25,15 @@ namespace NonDeterministicTests
 
             Assert.AreEqual(decimal.Parse("9"), result);
         }
+
+        [TestMethod]
+        public void CalculateFinalPriceAfter3PM_BasePriceTenDollars_FinalPriceTenDollars()
+        {
+            var myPriceCalculator = new Program.PriceCalculator();
+
+            decimal result = myPriceCalculator.CalculateFinalPrice(10);
+
+            Assert.AreEqual(decimal.Parse("10"), result);
+        }
     }
 }
