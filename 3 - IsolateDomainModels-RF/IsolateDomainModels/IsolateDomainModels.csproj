@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IsolateDomainModels.Core\IsolateDomainModels.Core.csproj" />
+    <ProjectReference Include="..\IsolateDomainModels.Data\IsolateDomainModels.Data.csproj" />
   </ItemGroup>
 
 </Project>

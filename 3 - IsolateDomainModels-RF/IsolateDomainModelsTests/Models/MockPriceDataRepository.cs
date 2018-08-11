@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using IsolateDomainModels.Core.Interfaces;
+using IsolateDomainModels.Data.Interfaces;
 
 namespace IsolateDomainModelsTests.Models
 {

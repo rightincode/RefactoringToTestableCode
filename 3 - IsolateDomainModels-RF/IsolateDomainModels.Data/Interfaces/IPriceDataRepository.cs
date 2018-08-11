@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace IsolateDomainModels.Core.Interfaces
+namespace IsolateDomainModels.Data.Interfaces
 {
     public interface IPriceDataRepository
     {

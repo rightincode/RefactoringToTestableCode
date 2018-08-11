@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using IsolateDomainModels.Core.Interfaces;
+using IsolateDomainModels.Data.Interfaces;
 
-namespace IsolateDomainModels.Core.Models
+namespace IsolateDomainModels.Data.Models
 {
     public class PriceDataRepository : IPriceDataRepository
     {

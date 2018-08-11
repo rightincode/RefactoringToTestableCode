@@ -12,8 +12,9 @@ namespace TightCouplingTests
         public void CalculateFinalPricesBefore10AM_BasePricesFrom1To10_EachFinalPricesHas20PercentDiscount()
         {
             MockPriceDataRepository myPriceRepo = new MockPriceDataRepository();
+            myPriceRepo.CalulateFinalPrices();
 
-            CashRegister cashRegister = new CashRegister(myPriceRepo, new DateTime(2018, 06, 21, 09, 00, 00)); //also processing
+            CashRegister cashRegister = new CashRegister(myPriceRepo.PriceData, new DateTime(2018, 06, 21, 09, 00, 00)); //also processing
             
             decimal currentValue = 1;
             foreach (PricingRecord pricingRecord in cashRegister.PriceResults)
@@ -28,8 +29,9 @@ namespace TightCouplingTests
         public void CalculateFinalPricesAfter10AMBefore12Noon_BasePricesFrom1To10_EachFinalPricesHas10PercentDiscount()
         {
             MockPriceDataRepository myPriceRepo = new MockPriceDataRepository();
+            myPriceRepo.CalulateFinalPrices();
 
-            CashRegister cashRegister = new CashRegister(myPriceRepo, new DateTime(2018, 06, 21, 11, 00, 00)); //also processing
+            CashRegister cashRegister = new CashRegister(myPriceRepo.PriceData, new DateTime(2018, 06, 21, 11, 00, 00)); //also processing
 
             decimal currentValue = 1;
             foreach (PricingRecord pricingRecord in cashRegister.PriceResults)
@@ -44,8 +46,9 @@ namespace TightCouplingTests
         public void CalculateFinalPricesAfter12Noon_BasePricesFrom1To10_NoDiscounts()
         {
             MockPriceDataRepository myPriceRepo = new MockPriceDataRepository();
+            myPriceRepo.CalulateFinalPrices();
 
-            CashRegister cashRegister = new CashRegister(myPriceRepo, new DateTime(2018, 06, 21, 12, 30, 00)); //also processing
+            CashRegister cashRegister = new CashRegister(myPriceRepo.PriceData, new DateTime(2018, 06, 21, 12, 30, 00)); //also processing
 
             foreach (PricingRecord pricingRecord in cashRegister.PriceResults)
             {
